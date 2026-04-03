@@ -1,11 +1,4 @@
-import YAML from "yaml";
 import {createRootNode, SchemaNode} from "@src/schema/schemaNode";
-import { schemaTypes } from "@src/schema/schemaTypes";
-
-
-export function parseYaml(yaml: string) {
-    return YAML.parse(yaml)
-}
 
 export function parseSchema(schema: any): SchemaNode {
     if (typeof schema !== "object") {
@@ -13,12 +6,14 @@ export function parseSchema(schema: any): SchemaNode {
     }
 
     if (schema.hasOwnProperty("_type")) {
-        throw new Error("Root node cannot have a type value")
+        throw new Error("Schema cannot have a _type value")
+    }
+
+    if (Object.keys(schema) == 0) {
+        throw new Error("Schema node cannot be empty")
     }
 
     const node = createRootNode()
-
-    node.type.build(node, schema)
-
+    node.type.build(schema, node)
     return node;
 }
