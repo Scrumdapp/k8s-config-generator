@@ -1,0 +1,41 @@
+{
+    "name": "k8s-config-generator",
+    "version": "0.0.1",
+    "description": "Generate k8s configs from easier to use files",
+    "homepage": "https://github.com/Scrumdapp/k8s-config-generator#readme",
+    "bugs": {
+        "url": "https://github.com/Scrumdapp/k8s-config-generator/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Scrumdapp/k8s-config-generator.git"
+    },
+    "license": "GPL-3.0",
+    "author": "",
+    "type": "ccommonjs",
+    "main": "dist/index.js",
+    "directories": {
+        "test": "test"
+    },
+    "bin": {
+        "k8s-generator": "dist/bin/k8s-generator.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "test": "jest",
+        "testw": "jest --watch",
+        "testc": "jest --coverage"
+    },
+    "dependencies": {
+        "commander": "^14.0.3",
+        "yaml": "^2.8.3"
+    },
+    "devDependencies": {
+        "@types/jest": "^30.0.0",
+        "@types/node": "^25.5.2",
+        "jest": "^30.3.0",
+        "ts-jest": "^29.4.9",
+        "typescript": "^6.0.2"
+    }
+}

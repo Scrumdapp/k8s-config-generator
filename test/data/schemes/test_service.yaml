@@ -1,0 +1,6 @@
+_template: service
+
+name: web-client
+namespace: test
+image: localhost:5000/scrumdapp/web-client:test
+port: 80

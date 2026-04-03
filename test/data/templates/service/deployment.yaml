@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: {{name}}
+  #if $namespace
+  namespace: {{namespace}}
+  #endif
+  labels:
+    scrumdapp.app/name: {{name}}
+
+spec:
+  replicas: {{replicas}}
+  selector:
+    matchLabels:
+      scrumdapp.app/name: {{name}}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        scrumdapp.app/name: {{name}}
+    spec:
+      containers:
+        - name: {{name}}
+          image: {{image}}
+      restartPolicy: Always

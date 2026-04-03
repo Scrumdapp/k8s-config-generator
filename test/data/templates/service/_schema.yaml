@@ -1,0 +1,23 @@
+schema:
+  name: name_string
+  namespace: name_string
+  image: docker_image
+
+  replicas:
+    _type: number
+    _default: 1
+
+  port: number
+  port_name:
+    _type: name_string
+    _default: app
+
+  traefik:
+    match: string
+
+do:
+  - set: file_prefix
+    to: ${{replace "_" to "-" in name}}
+  - clone: service.yaml
+    as: {{file_prefix}}-service.yaml
+  - if: [option_exists, traefik]

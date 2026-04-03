@@ -25,9 +25,12 @@
           ];
 
           shellHook = ''
+            npm config set ignore-scripts true
             export KUBE_CONFIG=$PWD/kubeconfig
-            npm -v
             echo "
+            npm: $(npm -v)
+            node: $(node -v)
+
             Welcome to the Scrumdapp k8s generator shell 🚀!
             ";
           '';

@@ -1,0 +1,15 @@
+kind: Service
+metadata:
+  labels:
+    scrumdapp.app/name: $name
+  name: $name
+  #if namespace
+  namespace: $namespace
+  #endif
+spec:
+  ports:
+    - name: "app"
+      port: 80
+      targetPort: 80
+  selector:
+    scrumdapp.app/name: web-client

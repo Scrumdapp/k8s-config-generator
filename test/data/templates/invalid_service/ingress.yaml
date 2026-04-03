@@ -1,0 +1,16 @@
+apiVersion: traefik.io/v1
+kind: IngressRoute
+metadata:
+  name: $name-ingress
+  #if $namespace
+  namespace: $namespace
+  #endif
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: $ingress.match
+      kind: Rule
+      services:
+        - name: $name
+          port: $port
