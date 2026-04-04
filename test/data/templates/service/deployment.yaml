@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Deployment
 metadata:
   name: {{name}}
-  #if $namespace
+  #if {{namespace}}
   namespace: {{namespace}}
   #endif
   labels:
