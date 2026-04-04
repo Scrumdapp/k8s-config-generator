@@ -1,4 +1,4 @@
-import {getTemplateFiles, getTemplates, schema_file_name} from "../../src/templates/folderReader"
+import {getTemplateFiles, getTemplates, schema_file_name} from "../../src/files/folderReader"
 
 describe("Read the files in a dir", () => {
     test("Get all templates in directory", () => {
