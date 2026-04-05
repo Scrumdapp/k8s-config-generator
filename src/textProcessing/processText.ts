@@ -1,6 +1,7 @@
 import {CommandContext} from "@src/command/commandContext";
 import {TokenizedLine, TokenizedText} from "@src/textProcessing/tokenizer";
 import {TokenizedLineReader} from "@src/textProcessing/tokenizedLineReader";
+import {parseExpression} from "@src/textProcessing/expression/parseTokenizedExpression";
 
 export function processText(ctx: CommandContext, text: TokenizedText): string {
 
@@ -36,6 +37,12 @@ function processVariable(ctx: CommandContext, reader: TokenizedLineReader): stri
     return ctx.getValue(result)
 }
 
-function processExpression() {
+function processExpression(ctx: CommandContext, reader: TokenizedLineReader): string {
+    let result = ""
+    while (reader.consume() != "}}") {
+        result += processToken(ctx, reader)
+    }
 
+    const expr = parseExpression(result)
+    return expr.type.run(expr)
 }
