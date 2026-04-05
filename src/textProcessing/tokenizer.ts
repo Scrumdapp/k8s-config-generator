@@ -3,7 +3,11 @@ const tokenizeRegex = /(\$?{{?|}}?|[^{}$]+)/g
 const matchSpecial = /^\$?{{|}}$/
 const matchNotSpecial = /^(\$?{(?!{)|}(?!}))/
 
-export function tokenize(text: string, commentToken: string): string[][] {
+export type TokenizedKey = "${{" | "{{" | "}}" | string
+export type TokenizedLine = TokenizedKey[]
+export type TokenizedText = TokenizedLine[]
+
+export function tokenize(text: string, commentToken: string): TokenizedText {
     const lines = text.split("\n")
     const tokens: string[][] = []
 
@@ -14,7 +18,7 @@ export function tokenize(text: string, commentToken: string): string[][] {
     return tokens;
 }
 
-export function tokenizeLine(text: string): string[] {
+export function tokenizeLine(text: string): TokenizedLine {
     let result: string[] = []
 
 
