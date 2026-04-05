@@ -12,18 +12,20 @@ export function processLine(ctx: CommandContext, line: TokenizedLine): string {
     let result = ""
 
     while (reader.hasNext()) {
+        reader.consume()
         const text = processToken(ctx, reader)
         result += text
     }
+
+    return result
 }
 
 function processToken(ctx: CommandContext, reader: TokenizedLineReader): string {
     switch (reader.peekCurrent()) {
-        case "${{":
-            return processVariable(ctx, reader)
         case "{{":
-            reader.consume()
-            break
+            return processVariable(ctx, reader)
+        case "${{":
+            return processExpression(ctx, reader)
         default:
             return reader.peekCurrent()
     }
@@ -31,16 +33,21 @@ function processToken(ctx: CommandContext, reader: TokenizedLineReader): string 
 
 function processVariable(ctx: CommandContext, reader: TokenizedLineReader): string {
     let result = ""
-    while (reader.consume() != "}}") {
+    reader.consume()
+    while (reader.peekCurrent() != "}}") {
         result += processToken(ctx, reader)
+        reader.consume()
     }
+
     return ctx.getValue(result)
 }
 
 function processExpression(ctx: CommandContext, reader: TokenizedLineReader): string {
     let result = ""
-    while (reader.consume() != "}}") {
+    reader.consume()
+    while (reader.peekCurrent() != "}}") {
         result += processToken(ctx, reader)
+        reader.consume()
     }
 
     const expr = parseExpression(result)

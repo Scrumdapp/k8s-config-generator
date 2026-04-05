@@ -4,7 +4,7 @@ import {ExpressionBuilder} from "@src/textProcessing/expression/expressionBuilde
 export const replaceTextExpression: TextExpression = {
     cmd: new ExpressionBuilder("replace")
         .string("from")
-        .keyword("to")
+        .keyword("with")
         .string("to")
         .keyword("in")
         .string("text")
@@ -15,6 +15,6 @@ export const replaceTextExpression: TextExpression = {
         const to = expr.getString("to")
         const text = expr.getString("text")
 
-        return text.replace(from, to)
+        return text.replaceAll(from, to)
     }
 }
