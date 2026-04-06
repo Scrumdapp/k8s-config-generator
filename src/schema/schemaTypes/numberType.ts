@@ -21,19 +21,19 @@ export const numberType: SchemaType = {
     },
     parseValue: (obj, node) => {
         if (!assertPresentWithRequired(obj, node)) {
-            return null
+            return undefined
         }
 
         if (typeof obj !== "number") {
             throw new Error(`Field '${node.path}' cannot be parsed as a number`)
         }
 
-        withValueOrSkip<number>(node, "min", (n) =>
-            assert(node, "value must be higher than min", () => n > obj)
+        withValueOrSkip<number>(node, "min", (min) =>
+            assert(node, "value must be higher than min", () => obj >= min)
         )
 
-        withValueOrSkip<number>(node, "max", (n) =>
-            assert(node, "value must be lower than max", () => n < obj)
+        withValueOrSkip<number>(node, "max", (max) =>
+            assert(node, "value must be lower than max", () => obj <= max)
         )
 
         return obj;

@@ -1,4 +1,5 @@
 import {createRootNode, SchemaNode} from "@src/schema/schemaNode";
+import {CommandContext} from "@src/command/commandContext";
 
 export function parseSchema(schema: any): SchemaNode {
     if (typeof schema !== "object") {
@@ -16,4 +17,31 @@ export function parseSchema(schema: any): SchemaNode {
     const node = createRootNode()
     node.type.build(schema, node)
     return node;
+}
+
+export function readSchemaValues(values: any, schemaNode: SchemaNode): CommandContext {
+    if (typeof values !== "object") {
+        throw new Error("Schema values must be of type object")
+    }
+
+    const object = schemaNode.type.parseValue(values, schemaNode)
+    if (typeof object !== "object") {
+        throw new Error("Error parsing schema values: must be of type object")
+    }
+
+    const ctx = new CommandContext();
+    convertObject(ctx, "", object)
+
+    return ctx;
+}
+
+export function convertObject(ctx: CommandContext, path: string, object: object) {
+    for (let key in object) {
+        const value = object[key]
+        const p = path == "" ? key : `${path}.${key}`
+        ctx.setValue(p, value)
+        if (typeof value === "object" && !(value instanceof Array)) {
+            convertObject(ctx, p, value)
+        }
+    }
 }

@@ -38,14 +38,16 @@ export const objectType: SchemaType = {
     },
     parseValue: (obj, node) => {
         if (!assertPresentWithRequired(obj, node)) {
-            return null
+            return undefined
         }
 
         const children = node.data.children as SchemaNode[]
 
         const v = {}
         for (let child of children) {
-            v[child.name] = child.type.parseValue(obj[child.name], child)
+            const value = child.type.parseValue(obj[child.name], child)
+            if (typeof value === "undefined") { continue }
+            v[child.name] = value
         }
 
         return v

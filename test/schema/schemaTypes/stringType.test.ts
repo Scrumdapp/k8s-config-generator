@@ -70,13 +70,13 @@ describe("Test the string type", () => {
         test("undefined without required", () => {
             stringType.build({ _type: "string" }, node)
             const v = stringType.parseValue(undefined, node)
-            expect(v).toBe(null)
+            expect(v).toBeUndefined()
         })
 
         test("null without required", () => {
             stringType.build({ _type: "string" }, node)
             const v = stringType.parseValue(null, node)
-            expect(v).toBe(null)
+            expect(v).toBeUndefined()
         })
     })
 })

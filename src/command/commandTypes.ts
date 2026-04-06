@@ -1,5 +1,6 @@
 import {CommandType} from "@src/command/commandType";
 import {setCommand} from "@src/command/commands/setCommand";
+import {echoCommand} from "@src/command/commands/echoCommand";
 
 export const commandTypes = new Map<string, CommandType>()
 
@@ -24,6 +25,7 @@ export function getCommandType(schema: any): CommandType {
 function addTypes() {
     // commandContainer should not be registered
     addCommandType(setCommand)
+    addCommandType(echoCommand)
 }
 
 function addCommandType(type: CommandType) {

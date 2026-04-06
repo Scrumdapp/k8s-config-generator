@@ -1,5 +1,5 @@
 import {CommandContext} from "../../src/command/commandContext";
-import {tokenize} from "../../src/textProcessing/tokenizer";
+import {tokenizeFile} from "../../src/textProcessing/tokenizer";
 import {processText} from "../../src/textProcessing/processText";
 
 const t0 = `
@@ -60,7 +60,7 @@ describe("Processing of text", () => {
 
     test("simple multi-line processing test", () => {
         const ctx = new CommandContext()
-        const txt = processText(ctx, tokenize(t0))
+        const txt = processText(ctx, tokenizeFile(t0))
         expect(txt).toBe(t0)
     })
 
@@ -68,7 +68,7 @@ describe("Processing of text", () => {
         const ctx = new CommandContext()
         ctx.setValue("name", "web-client")
         ctx.setValue("image", "scrumdapp/web-client:latest")
-        const txt = processText(ctx, tokenize(t1))
+        const txt = processText(ctx, tokenizeFile(t1))
         expect(txt).toBe(t1.replace("{{name}}", ctx.getValue("name")).replace("{{image}}", ctx.getValue("image")))
     })
 
@@ -76,7 +76,7 @@ describe("Processing of text", () => {
         const ctx = new CommandContext()
         ctx.setValue("name", "web client")
         ctx.setValue("image", "scrumdapp/web-client:latest")
-        const txt = processText(ctx, tokenize(t2))
+        const txt = processText(ctx, tokenizeFile(t2))
         expect(txt).toBe(t1.replace("{{name}}", ctx.getValue("name").replace(" ", "-")).replace("{{image}}", ctx.getValue("image")))
     })
 
@@ -86,7 +86,7 @@ describe("Processing of text", () => {
             const ctx = new CommandContext()
             ctx.setValue("name", "checkin-service")
             ctx.setValue("image", "scrumdapp/web-client:latest")
-            const txt = processText(ctx, tokenize(t3))
+            const txt = processText(ctx, tokenizeFile(t3))
             expect(txt).toBe(t0)
         })
 
@@ -94,27 +94,27 @@ describe("Processing of text", () => {
             const ctx = new CommandContext()
             ctx.setValue("name", "checkin-service")
             ctx.setValue("image", "scrumdapp/web-client:latest")
-            const txt = processText(ctx, tokenize(t5))
+            const txt = processText(ctx, tokenizeFile(t5))
             expect(txt).toBe(t5r1)
         })
 
         test("nested statements parent true", () => {
             const ctx = new CommandContext()
             ctx.setValue("name", "checkin-service")
-            const txt = processText(ctx, tokenize(t5))
+            const txt = processText(ctx, tokenizeFile(t5))
             expect(txt.trim()).toBe(t5r2.trim())
         })
 
         test("nested statements child true", () => {
             const ctx = new CommandContext()
             ctx.setValue("image", "scrumdapp/web-client:latest")
-            const txt = processText(ctx, tokenize(t5))
+            const txt = processText(ctx, tokenizeFile(t5))
             expect(txt.trim()).toBe(t5r3.trim())
         })
 
         test("incomplete statements", () => {
             const ctx = new CommandContext()
-            expect(() => processText(ctx, tokenize(t4))).toThrow()
+            expect(() => processText(ctx, tokenizeFile(t4))).toThrow()
         })
 
     })

@@ -7,7 +7,7 @@ export type TokenizedKey = "${{" | "{{" | "}}" | string
 export type TokenizedLine = TokenizedKey[]
 export type TokenizedText = TokenizedLine[]
 
-export function tokenize(text: string): TokenizedText {
+export function tokenizeFile(text: string): TokenizedText {
     const lines = text.split("\n")
     const tokens: string[][] = []
 

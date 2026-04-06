@@ -15,7 +15,7 @@ describe("Read the files in a dir", () => {
     test("Read files from template", () => {
         const files = getTemplateFiles("test/data/templates/service")
         expect(files.length).not.toBe(0)
-        expect(files).toContain(schema_file_name)
+        expect(files).not.toContain(schema_file_name)
     })
 
     test("Fail reading template without schema", () => {

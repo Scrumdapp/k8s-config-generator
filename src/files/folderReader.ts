@@ -1,5 +1,5 @@
-import fs from "node:fs";
-import path from "node:path"
+import * as fs from "node:fs";
+import * as path from "node:path"
 
 export const schema_file_name = "_schema.yaml"
 
@@ -47,6 +47,6 @@ export function getTemplateFiles(dir: string) {
         throw new Error(`'${dir}' does not contain a '${schema_file_name}' file`)
     }
 
-    return d;
+    return d.filter(it => path.extname(it) == ".yaml").filter(it => it != schema_file_name)
 
 }

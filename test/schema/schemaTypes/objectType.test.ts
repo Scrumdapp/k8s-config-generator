@@ -83,7 +83,7 @@ describe("Test the object type", () => {
             objectType.build({ num: { _type: "number" } }, node)
             const d = {}
             const v = objectType.parseValue(d, node)
-            expect(v).toEqual({ num: null })
+            expect(v).toEqual({ })
         })
 
         test("required undefined", () => {
@@ -99,13 +99,13 @@ describe("Test the object type", () => {
         test("undefined is fine", () => {
             objectType.build({ num: { _type: "number" } }, node)
             const v = objectType.parseValue(undefined, node)
-            expect(v).toBeNull()
+            expect(v).toBeUndefined()
         })
 
         test("null is fine", () => {
             objectType.build({ num: { _type: "number" } }, node)
             const v = objectType.parseValue(null, node)
-            expect(v).toBeNull()
+            expect(v).toBeUndefined()
         })
     })
 })

@@ -91,13 +91,13 @@ describe("Test the number type", () => {
         test("undefined without required", () => {
             numberType.build({ _type: "number" }, node)
             const v = numberType.parseValue(undefined, node)
-            expect(v).toBe(null)
+            expect(v).toBe(undefined)
         })
 
         test("null without required", () => {
             numberType.build({ _type: "number" }, node)
             const v = numberType.parseValue(null, node)
-            expect(v).toBe(null)
+            expect(v).toBe(undefined)
         })
 
         describe("Min Max tests", () => {
@@ -113,12 +113,15 @@ describe("Test the number type", () => {
                 expect(() => numberType.parseValue(6, node)).toThrow()
             })
 
-            test("correct at min", () => {
-                expect(() => numberType.parseValue(0, node)).toThrow()
-            })
-
-            test("correct at max", () => {
-                expect(() => numberType.parseValue(5, node)).toThrow()
+            test.each([
+                [0],
+                [1],
+                [2],
+                [3],
+                [4],
+                [5],
+            ])("correct at &p", (v) => {
+                expect(numberType.parseValue(v, node)).toBe(v)
             })
         })
     })

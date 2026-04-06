@@ -1,4 +1,4 @@
-import {tokenize} from "../../src/textProcessing/tokenizer";
+import {tokenizeFile} from "../../src/textProcessing/tokenizer";
 
 const t0 = `
 name: checkin-service
@@ -13,7 +13,7 @@ image: {{image}}
 describe("Test tokenization of texts", () => {
 
     test("tokenize simple text", () => {
-        const tokenized = tokenize(t0)
+        const tokenized = tokenizeFile(t0)
         expect(tokenized.length).toBe(4)
         expect(tokenized[0]).toEqual([ "" ])
         expect(tokenized[1]).toEqual([ "name: checkin-service" ])
@@ -22,7 +22,7 @@ describe("Test tokenization of texts", () => {
     })
 
     test("expressions getting parsed", () => {
-        const tokenized = tokenize(t1)
+        const tokenized = tokenizeFile(t1)
         expect(tokenized.length).toBe(4)
         expect(tokenized[0]).toEqual([ "" ])
         expect(tokenized[1]).toEqual([ "name: ", "{{", "name", "}}" ])

@@ -1,8 +1,8 @@
 import {SchemaType, setBooleanFlagIfExists} from "@src/schema/schemaType";
 import {assertPresentWithRequired} from "@src/schema/schemaUtils";
 
-export const stringType: SchemaType = {
-    name: "string",
+export const nameType: SchemaType = {
+    name: "name_string",
     build: (schema, node) => {
         if (typeof schema === "string") {
             node.data.required = true;
@@ -16,18 +16,14 @@ export const stringType: SchemaType = {
             return undefined
         }
 
-        let v: string = ""
-        switch (typeof obj) {
-            case "number":
-                v = obj.toString()
-                break
-            case "string":
-                v = obj as String
-                break
-            default:
-                throw new Error(`Field '${node.path}' cannot be parsed as a number`)
+        if (typeof obj !== "string") {
+            throw new Error(`${node.path}: must be a string`)
         }
 
-        return v;
+        if (!/^[a-z][a-z0-9-]*[a-z0-9]$/.test(obj)) {
+            throw new Error(`${node.path}: value did not match '/^[a-z][a-z0-9-]*[a-z0-9]$/'`)
+        }
+
+        return obj;
     }
 }

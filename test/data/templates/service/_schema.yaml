@@ -19,10 +19,10 @@ do:
   - set: file_prefix
     to: ${{replace "_" to "-" in name}}
   - copy: service.yaml
-    as: {{file_prefix}}-service.yaml
+    as: "{{file_prefix}}-service.yaml"
   - copy: deployment.yaml
-    as: {{file_prefix}}-deployment.yaml
+    as: "{{file_prefix}}-deployment.yaml"
   - if: [option_exists, traefik]
     do:
       - copy: ingress.yaml
-        as: {{file_prefix}}-ingress.yaml
+        as: "{{file_prefix}}-ingress.yaml"
