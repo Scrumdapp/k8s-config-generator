@@ -18,11 +18,12 @@ export class Template {
         return new Map(this.files)
     }
 
-    run(values: any) {
+    run(workDir: string, values: any) {
         const schemaNode = this.schemaFile.schema
         const cmdNode = this.schemaFile.commands
 
         const ctx = readSchemaValues(values, schemaNode)
+        ctx.workDir = workDir
         ctx.setTemplates(this.getFiles())
 
         cmdNode.command.run(ctx, cmdNode)

@@ -10,19 +10,19 @@ schema:
   port: number
   port_name:
     _type: name_string
-    _default: app
+    default: app
 
   traefik:
     match: string
 
 do:
-  - set: file_prefix
-    to: ${{replace "_" to "-" in name}}
+#  - set: file_prefix
+#    to: ${{replace "_" with "-" in name}}
   - copy: service.yaml
-    as: "{{file_prefix}}-service.yaml"
+    as: "{{name}}-service.yaml"
   - copy: deployment.yaml
-    as: "{{file_prefix}}-deployment.yaml"
-  - if: [option_exists, traefik]
-    do:
-      - copy: ingress.yaml
-        as: "{{file_prefix}}-ingress.yaml"
+    as: "{{name}}-deployment.yaml"
+#  - if: [option_exists, traefik]
+#    do:
+#      - copy: ingress.yaml
+#        as: "{{file_prefix}}-ingress.yaml"

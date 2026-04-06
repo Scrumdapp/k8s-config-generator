@@ -20,7 +20,7 @@ export function parseTokenizedExpression(tokenized: string[]): Expression {
             case "KEY": {
                 const key = reader.consume()
                 if (key.toLowerCase() != definition.name) {
-                    throw new Error(`${cmdName}: Key '${key}' did not match ${definition.name}`)
+                    throw new Error(`${cmdName}: Key '${key}' did not match '${definition.name}'`)
                 }
                 break
             }

@@ -1,6 +1,8 @@
 import {TokenizedText} from "@src/textProcessing/tokenizer";
 
 export class CommandContext {
+    workDir: string
+
     private data = new Map<string, any>()
     private templates = new Map<string, TokenizedText>()
 
