@@ -11,16 +11,20 @@ export function processText(ctx: CommandContext, text: TokenizedText): string {
 
     while (reader.hasNext()) {
         reader.consume()
-        result.push(preProcessLine(ctx, reader, false))
+        const r = preProcessLine(ctx, reader, false)
+        if (r == null) {
+            continue
+        }
+        result.push(r)
     }
 
     return result.join("\n")
 }
 
-export function preProcessLine(ctx: CommandContext, reader: TokenizedReader<TokenizedLine>, ignore: boolean): string {
+export function preProcessLine(ctx: CommandContext, reader: TokenizedReader<TokenizedLine>, ignore: boolean): string | null {
     const regex = reader.peekCurrent()[0].match(/^\s*(#\w+)/)
     if (!regex) {
-        return ignore ? "" : processLine(ctx, reader.peekCurrent())
+        return ignore ? null : processLine(ctx, reader.peekCurrent())
     }
 
     const operation = regex[0].toLowerCase()
@@ -32,7 +36,7 @@ export function preProcessLine(ctx: CommandContext, reader: TokenizedReader<Toke
     }
 }
 
-export function processCondition(ctx: CommandContext, reader: TokenizedReader<TokenizedLine>, ignore: boolean): string {
+export function processCondition(ctx: CommandContext, reader: TokenizedReader<TokenizedLine>, ignore: boolean): string | null {
     const startLn = reader.index;
     const line = ignore ? "#if false" : processLine(ctx, reader.peekCurrent())
     const regex = line.match(/^\s*#if (\w+)/)
@@ -59,12 +63,14 @@ export function processCondition(ctx: CommandContext, reader: TokenizedReader<To
             ended = true;
             break
         }
-        result.push(preProcessLine(ctx, reader, !truthful || ignore))
+        const l = preProcessLine(ctx, reader, !truthful || ignore)
+        if (l == null) { continue }
+        result.push(l)
     }
 
     if (!ended) {
         throw new Error(`Line ${startLn}: If statement did not close`)
     }
 
-    return ignore ? "" : result.join("\n")
+    return (!truthful || ignore) ? null : result.join("\n")
 }

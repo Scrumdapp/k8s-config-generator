@@ -28,6 +28,34 @@ const t4 = `
 #if exists image
 `
 
+const t5 = `
+_template: service
+#if exists name
+name: {{name}}
+#if exists image
+image: {{image}}
+#endif
+port: 3000
+#endif
+`
+
+const t5r1 = `
+_template: service
+name: checkin-service
+image: scrumdapp/web-client:latest
+port: 3000
+`
+
+const t5r2 = `
+_template: service
+name: checkin-service
+port: 3000
+`
+
+const t5r3 = `
+_template: service
+`
+
 describe("Processing of text", () => {
 
     test("simple multi-line processing test", () => {
@@ -60,6 +88,28 @@ describe("Processing of text", () => {
             ctx.setValue("image", "scrumdapp/web-client:latest")
             const txt = processText(ctx, tokenize(t3))
             expect(txt).toBe(t0)
+        })
+
+        test("nested statements both true", () => {
+            const ctx = new CommandContext()
+            ctx.setValue("name", "checkin-service")
+            ctx.setValue("image", "scrumdapp/web-client:latest")
+            const txt = processText(ctx, tokenize(t5))
+            expect(txt).toBe(t5r1)
+        })
+
+        test("nested statements parent true", () => {
+            const ctx = new CommandContext()
+            ctx.setValue("name", "checkin-service")
+            const txt = processText(ctx, tokenize(t5))
+            expect(txt.trim()).toBe(t5r2.trim())
+        })
+
+        test("nested statements child true", () => {
+            const ctx = new CommandContext()
+            ctx.setValue("image", "scrumdapp/web-client:latest")
+            const txt = processText(ctx, tokenize(t5))
+            expect(txt.trim()).toBe(t5r3.trim())
         })
 
         test("incomplete statements", () => {
