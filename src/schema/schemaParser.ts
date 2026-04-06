@@ -1,5 +1,5 @@
-import {createRootNode, SchemaNode} from "@src/schema/schemaNode";
-import {CommandContext} from "@src/command/commandContext";
+import {createRootNode, SchemaNode} from "./schemaNode";
+import {CommandContext} from "../command/commandContext";
 
 export function parseSchema(schema: any): SchemaNode {
     if (typeof schema !== "object") {

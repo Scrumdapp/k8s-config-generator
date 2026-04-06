@@ -1,5 +1,5 @@
-import {TextExpression} from "@src/textProcessing/expression/textExpression";
-import {ExpressionBuilder} from "@src/textProcessing/expression/expressionBuilder";
+import {TextExpression} from "../textExpression";
+import {ExpressionBuilder} from "../expressionBuilder";
 
 export const replaceTextExpression: TextExpression = {
     cmd: new ExpressionBuilder("replace")

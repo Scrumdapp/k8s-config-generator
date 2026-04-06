@@ -1,5 +1,5 @@
-import {SchemaType} from "@src/schema/schemaType";
-import {schemaTypes} from "@src/schema/schemaTypes";
+import {SchemaType} from "./schemaType";
+import {schemaTypes} from "./schemaTypes";
 
 export type DataType = { [key: string]: any }
 

@@ -1,4 +1,4 @@
-import {TokenizedText} from "@src/textProcessing/tokenizer";
+import {TokenizedText} from "../textProcessing/tokenizer";
 
 export class CommandContext {
     // @ts-ignore

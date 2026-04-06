@@ -1,5 +1,5 @@
-import {CommandNode, createCommandContainer, createCommandNode} from "@src/command/commandNode";
-import {getCommandType} from "@src/command/commandTypes";
+import {CommandNode, createCommandContainer, createCommandNode} from "./commandNode";
+import {getCommandType} from "./commandTypes";
 
 export function parseCommands(schema: any): CommandNode {
     return createCommandContainer(schema);

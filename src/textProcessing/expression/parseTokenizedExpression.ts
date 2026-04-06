@@ -1,7 +1,7 @@
-import {Expression, ExpressionValue} from "@src/textProcessing/expression/expression";
-import {getTextExpressionType} from "@src/textProcessing/expression/textExpression";
-import {TokenizedReader} from "@src/textProcessing/tokenizedReader";
-import {tokenizeExpression} from "@src/textProcessing/tokenizeExpression";
+import {tokenizeExpression} from "../tokenizeExpression";
+import {getTextExpressionType} from "./textExpression";
+import {Expression, ExpressionValue} from "./expression";
+import {TokenizedReader} from "../tokenizedReader";
 
 export function parseExpression(expression: string) {
     return parseTokenizedExpression(tokenizeExpression(expression));

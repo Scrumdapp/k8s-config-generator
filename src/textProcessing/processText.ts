@@ -1,8 +1,7 @@
-import {CommandContext} from "@src/command/commandContext";
-import {TokenizedLine, TokenizedText} from "@src/textProcessing/tokenizer";
-import {TokenizedReader} from "@src/textProcessing/tokenizedReader";
-import {processLine} from "@src/textProcessing/processLine";
-
+import {CommandContext} from "../command/commandContext";
+import {TokenizedLine, TokenizedText} from "./tokenizer";
+import {TokenizedReader} from "./tokenizedReader";
+import {processLine} from "./processLine";
 
 export function processText(ctx: CommandContext, text: TokenizedText): string {
 

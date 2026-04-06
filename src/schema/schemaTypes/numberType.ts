@@ -1,5 +1,5 @@
-import {SchemaType, setBooleanFlagIfExists, setNumberFlagIfExists} from "@src/schema/schemaType";
-import {assert, assertPresentWithRequired, withValueOrSkip} from "@src/schema/schemaUtils";
+import {SchemaType, setBooleanFlagIfExists, setNumberFlagIfExists} from "../schemaType";
+import {assert, assertPresentWithRequired, withValueOrSkip} from "../schemaUtils";
 
 export const numberType: SchemaType = {
     name: "number",

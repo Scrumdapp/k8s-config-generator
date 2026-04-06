@@ -1,4 +1,4 @@
-import {DataType, SchemaNode} from "@src/schema/schemaNode";
+import {SchemaNode} from "./schemaNode";
 
 
 export interface SchemaType {

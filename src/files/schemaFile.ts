@@ -1,5 +1,5 @@
-import {SchemaNode} from "@src/schema/schemaNode";
-import {CommandNode} from "@src/command/commandNode";
+import {SchemaNode} from "../schema/schemaNode";
+import {CommandNode} from "../command/commandNode";
 
 export interface SchemaFile {
     schema: SchemaNode,

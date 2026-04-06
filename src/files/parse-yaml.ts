@@ -1,7 +1,7 @@
 import * as YAML from 'yaml'
-import {parseSchema} from "@src/schema/schemaParser";
-import {parseCommands} from "@src/command/commandParser";
-import {SchemaFile} from "@src/files/schemaFile";
+import {parseSchema} from "../schema/schemaParser";
+import {parseCommands} from "../command/commandParser";
+import {SchemaFile} from "./schemaFile";
 
 
 export function readSchemaFile(convertedYaml: any) {

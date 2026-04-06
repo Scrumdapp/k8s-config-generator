@@ -1,9 +1,9 @@
-import {SchemaType} from "@src/schema/schemaType";
-import {objectType} from "@src/schema/schemaTypes/objectType";
-import {numberType} from "@src/schema/schemaTypes/numberType";
-import {stringType} from "@src/schema/schemaTypes/stringType";
-import {nameType} from "@src/schema/schemaTypes/nameType";
-import {dockerImageType} from "@src/schema/schemaTypes/dockerImageType";
+import {SchemaType} from "./schemaType";
+import {objectType} from "./schemaTypes/objectType";
+import {numberType} from "./schemaTypes/numberType";
+import {stringType} from "./schemaTypes/stringType";
+import {nameType} from "./schemaTypes/nameType";
+import {dockerImageType} from "./schemaTypes/dockerImageType";
 
 export const schemaTypes = new Map<string, SchemaType>()
 

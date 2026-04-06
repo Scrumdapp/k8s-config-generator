@@ -1,9 +1,9 @@
-import {Template} from "@src/files/template";
-import {getTemplateFiles, schema_file_name} from "@src/files/folderReader";
 import * as PATH from "node:path"
 import * as fs from "node:fs";
-import {parseYaml, readSchemaFile} from "@src/files/parse-yaml";
-import {TokenizedText, tokenizeFile} from "@src/textProcessing/tokenizer";
+import {Template} from "./template";
+import {getTemplateFiles, schema_file_name} from "./folderReader";
+import {parseYaml, readSchemaFile} from "./parse-yaml";
+import {TokenizedText, tokenizeFile} from "../textProcessing/tokenizer";
 
 export function createTemplate(path: string): Template {
     const templateName = PATH.basename(path)

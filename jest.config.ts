@@ -6,6 +6,7 @@
 import type { Config } from 'jest';
 
 const config: Config = {
+    preset: "ts-jest",
     // All imported modules in your tests should be mocked automatically
     // automock: false,
 
@@ -177,13 +178,6 @@ const config: Config = {
     // testRunner: "jest-circus/runner",
 
     // A map from regular expressions to paths to transformers
-    preset: "ts-jest",
-    transform: {
-        '^.+\\.(ts|tsx)?$': 'ts-jest',
-    },
-    moduleNameMapper: {
-        "@src/(.*)": "<rootDir>/src/$1",
-    },
 
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
     // transformIgnorePatterns: [

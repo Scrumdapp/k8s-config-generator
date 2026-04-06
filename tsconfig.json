@@ -15,11 +15,6 @@
         "types": [
             "node"
         ],
-        "paths": {
-            "@src/*": [
-                "./src/*"
-            ]
-        },
         // Other Outputs
         "sourceMap": true,
         "declaration": false,

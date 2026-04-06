@@ -1,8 +1,8 @@
-import {CommandType} from "@src/command/commandType";
-import {getSchemaValue, getStringValue} from "@src/command/commandUtils";
 import * as FS from "node:fs";
 import * as PATH from "node:path";
-import {processText} from "@src/textProcessing/processText";
+import {CommandType} from "../commandType";
+import {getSchemaValue, getStringValue} from "../commandUtils";
+import {processText} from "../../textProcessing/processText";
 
 export const copyCommand: CommandType & { writeFile: (path: string, text: string) => void } = {
     cmd: "copy",

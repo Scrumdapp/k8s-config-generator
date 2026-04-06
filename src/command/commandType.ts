@@ -1,6 +1,5 @@
-import {CommandNode} from "@src/command/commandNode";
-import {CommandContext} from "@src/command/commandContext";
-
+import {CommandNode} from "./commandNode";
+import {CommandContext} from "./commandContext";
 
 export interface CommandType {
     cmd: string,

@@ -1,4 +1,4 @@
-import {SchemaNode} from "@src/schema/schemaNode";
+import {SchemaNode} from "./schemaNode";
 
 export function withValueOrSkip<T>(node: SchemaNode, name: string, fn: (value: T) => void) {
     if (!node.data.hasOwnProperty(name)) {

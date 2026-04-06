@@ -1,8 +1,8 @@
-import {ExpressionDefinition} from "@src/textProcessing/expression/expressionBuilder";
-import {Expression} from "@src/textProcessing/expression/expression";
-import {replaceTextExpression} from "@src/textProcessing/expression/expressions/replaceTextExpression";
-import {existsExpression} from "@src/textProcessing/expression/expressions/existsExpression";
-import {CommandContext} from "@src/command/commandContext";
+import {ExpressionDefinition} from "./expressionBuilder";
+import {CommandContext} from "../../command/commandContext";
+import {Expression} from "./expression";
+import {replaceTextExpression} from "./expressions/replaceTextExpression";
+import {existsExpression} from "./expressions/existsExpression";
 
 export interface TextExpression {
     cmd: ExpressionDefinition[]

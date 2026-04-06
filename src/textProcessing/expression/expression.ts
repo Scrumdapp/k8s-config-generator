@@ -1,5 +1,5 @@
-import {ExpressionDefinition} from "@src/textProcessing/expression/expressionBuilder";
-import {TextExpression} from "@src/textProcessing/expression/textExpression";
+import {TextExpression} from "./textExpression";
+import {ExpressionDefinition} from "./expressionBuilder";
 
 export class Expression {
     readonly type: TextExpression

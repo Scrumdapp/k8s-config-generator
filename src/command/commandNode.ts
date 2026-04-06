@@ -1,5 +1,5 @@
-import {CommandType} from "@src/command/commandType";
-import {commandContainer} from "@src/command/commands/commandContainer";
+import {CommandType} from "./commandType";
+import {commandContainer} from "./commands/commandContainer";
 
 export interface CommandNode {
     data: { [key: string]: any }

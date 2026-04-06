@@ -1,5 +1,5 @@
-import {SchemaType, setBooleanFlagIfExists} from "@src/schema/schemaType";
-import {assertPresentWithRequired} from "@src/schema/schemaUtils";
+import {SchemaType, setBooleanFlagIfExists} from "../schemaType";
+import {assertPresentWithRequired} from "../schemaUtils";
 
 export const dockerImageType: SchemaType = {
     name: "docker_image",

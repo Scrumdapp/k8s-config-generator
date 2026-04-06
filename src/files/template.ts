@@ -1,6 +1,6 @@
-import {SchemaFile} from "@src/files/schemaFile";
-import {TokenizedText} from "@src/textProcessing/tokenizer";
-import {readSchemaValues} from "@src/schema/schemaParser";
+import {SchemaFile} from "./schemaFile";
+import {TokenizedText} from "../textProcessing/tokenizer";
+import {readSchemaValues} from "../schema/schemaParser";
 
 export class Template {
 

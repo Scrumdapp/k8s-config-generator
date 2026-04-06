@@ -1,5 +1,5 @@
-import {CommandType} from "@src/command/commandType";
-import {getSchemaValue, getStringValue} from "@src/command/commandUtils";
+import {CommandType} from "../commandType";
+import {getSchemaValue, getStringValue} from "../commandUtils";
 
 export const echoCommand: CommandType = {
     cmd: "echo",

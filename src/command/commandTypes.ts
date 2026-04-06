@@ -1,7 +1,7 @@
-import {CommandType} from "@src/command/commandType";
-import {setCommand} from "@src/command/commands/setCommand";
-import {echoCommand} from "@src/command/commands/echoCommand";
-import {copyCommand} from "@src/command/commands/copyCommand";
+import {CommandType} from "./commandType";
+import {setCommand} from "./commands/setCommand";
+import {echoCommand} from "./commands/echoCommand";
+import {copyCommand} from "./commands/copyCommand";
 
 export const commandTypes = new Map<string, CommandType>()
 

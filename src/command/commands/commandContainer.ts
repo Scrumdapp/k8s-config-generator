@@ -1,6 +1,6 @@
-import {CommandType} from "@src/command/commandType";
-import {CommandNode} from "@src/command/commandNode";
-import {parseCommand} from "@src/command/commandParser";
+import {CommandType} from "../commandType";
+import {parseCommand} from "../commandParser";
+import {CommandNode} from "../commandNode";
 
 export const commandContainer: CommandType = {
     cmd: "container",

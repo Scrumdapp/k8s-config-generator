@@ -1,7 +1,7 @@
-import {CommandNode} from "@src/command/commandNode";
-import {CommandContext} from "@src/command/commandContext";
-import {tokenizeLine} from "@src/textProcessing/tokenizer";
-import {processLine} from "@src/textProcessing/processLine";
+import {CommandNode} from "./commandNode";
+import {CommandContext} from "./commandContext";
+import {processLine} from "../textProcessing/processLine";
+import {tokenizeLine} from "../textProcessing/tokenizer";
 
 export function assert(node: CommandNode, message: string, fn: () => boolean) {
     if (fn()) {

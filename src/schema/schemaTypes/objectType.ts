@@ -1,7 +1,7 @@
-import {SchemaType} from "@src/schema/schemaType";
-import {getSchemaType} from "@src/schema/schemaTypes";
-import {createSchemaNode, SchemaNode} from "@src/schema/schemaNode";
-import {assertPresentWithRequired} from "@src/schema/schemaUtils";
+import {SchemaType} from "../schemaType";
+import {createSchemaNode, SchemaNode} from "../schemaNode";
+import {getSchemaType} from "../schemaTypes";
+import {assertPresentWithRequired} from "../schemaUtils";
 
 export const objectType: SchemaType = {
     name: "object",
