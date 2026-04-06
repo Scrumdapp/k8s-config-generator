@@ -8,8 +8,8 @@ export const setCommand: CommandType = {
         node.data.to = getSchemaValue(node, schema, "to");
     },
     run: (ctx, node) => {
-        const setValue = getStringValue(node, "set")
-        const toValue = getStringValue(node, "to")
+        const setValue = getStringValue(ctx, node, "set")
+        const toValue = getStringValue(ctx, node, "to")
 
         ctx.setValue(setValue, toValue)
     }
