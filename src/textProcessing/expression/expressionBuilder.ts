@@ -23,13 +23,22 @@ export class ExpressionBuilder {
         return this
     }
 
+    variableName(name: string) {
+        this.format.push({
+            name: name,
+            type: "VAR"
+        })
+
+        return this
+    }
+
     build() {
         return [...this.format]
     }
 
 }
 
-export type ExpressionType = 'KEY' | 'STR'
+export type ExpressionType = 'KEY' | 'STR' | 'VAR'
 
 export interface ExpressionDefinition {
     name: string

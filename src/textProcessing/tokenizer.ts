@@ -7,12 +7,16 @@ export type TokenizedKey = "${{" | "{{" | "}}" | string
 export type TokenizedLine = TokenizedKey[]
 export type TokenizedText = TokenizedLine[]
 
-export function tokenize(text: string, commentToken: string): TokenizedText {
+export function tokenize(text: string): TokenizedText {
     const lines = text.split("\n")
     const tokens: string[][] = []
 
     for (let line of lines) {
-        tokens.push(tokenizeLine(line))
+        if (line == "") {
+            tokens.push([""])
+        } else {
+            tokens.push(tokenizeLine(line))
+        }
     }
 
     return tokens;
@@ -21,6 +25,14 @@ export function tokenize(text: string, commentToken: string): TokenizedText {
 export function tokenizeLine(text: string): TokenizedLine {
     let result: string[] = []
 
+    const regex = text.match(/^(\s*)(#\w+) (.*)$/)
+    switch (regex != null ? regex[2] : "") {
+        case "#if":
+            text = `${regex![1]}${regex![2]} $\{{${regex![3]}}}`
+            break
+        default:
+            break
+    }
 
     for (let r of text.matchAll(tokenizeRegex)) {
         result.push(r[0])

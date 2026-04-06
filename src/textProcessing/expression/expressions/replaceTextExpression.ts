@@ -10,7 +10,7 @@ export const replaceTextExpression: TextExpression = {
         .string("text")
         .build(),
 
-    run: (expr) => {
+    run: (ctx, expr) => {
         const from = expr.getString("from")
         const to = expr.getString("to")
         const text = expr.getString("text")

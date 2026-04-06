@@ -4,7 +4,7 @@ metadata:
   labels:
     scrumdapp.app/name: {{name}}
   name: {{name}}
-  #if namespace
+  #if exists namespace
   namespace: {{namespace}}
   #endif
 spec:

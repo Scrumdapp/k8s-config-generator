@@ -1,10 +1,12 @@
 import {ExpressionDefinition} from "@src/textProcessing/expression/expressionBuilder";
 import {Expression} from "@src/textProcessing/expression/expression";
 import {replaceTextExpression} from "@src/textProcessing/expression/expressions/replaceTextExpression";
+import {existsExpression} from "@src/textProcessing/expression/expressions/existsExpression";
+import {CommandContext} from "@src/command/commandContext";
 
 export interface TextExpression {
     cmd: ExpressionDefinition[]
-    run: (expr: Expression) => string
+    run: (ctx: CommandContext, expr: Expression) => string
 }
 
 export const expressions = new Map<string, TextExpression>()
@@ -13,7 +15,7 @@ export function getTextExpressionType(name: string) {
     name = name.toLowerCase()
     const expr = expressions.get(name)
     if (!expr) {
-        throw new Error(`Command '${name}' does not exist`)
+        throw new Error(`Expression '${name}' does not exist`)
     }
 
     return expr
@@ -29,6 +31,7 @@ function addExpression(expression: TextExpression) {
 
 function addExpressions() {
     addExpression(replaceTextExpression)
+    addExpression(existsExpression)
 }
 
 addExpressions()

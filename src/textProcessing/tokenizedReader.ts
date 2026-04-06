@@ -1,10 +1,8 @@
-import {TokenizedLine} from "@src/textProcessing/tokenizer";
+export class TokenizedReader<T> {
+    public index = -1
+    private readonly line: T[]
 
-export class TokenizedLineReader {
-    private line: TokenizedLine
-    private index = -1
-
-    constructor(line: TokenizedLine) {
+    constructor(line: T[]) {
         this.line = line;
     }
 

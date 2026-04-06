@@ -70,6 +70,15 @@ describe("Test text tokenization", () => {
                 expect(expected[i]).toBe(tokenized[i])
             }
         })
-    })
 
+        test.each([
+            ["if", "    #if exists {{value}}", [ `    #if `, "${{", "exists ", "{{", "value", "}}", "}}" ]]
+        ] as [string, string, string[]][])("Tokenization of special line %p", (_, txt, expected) => {
+            const tokenized = tokenizeLine(txt)
+            expect(tokenized.length).toBe(expected.length)
+            for (let i in expected) {
+                expect(expected[i]).toBe(tokenized[i])
+            }
+        })
+    })
 })
