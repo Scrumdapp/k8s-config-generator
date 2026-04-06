@@ -10,18 +10,6 @@ name: {{name}}
 image: {{image}}
 `
 
-const t2 = `
-name: {{name}}
-#if exists image
-image: {{image}}
-#endif
-port: 3000
-`
-
-const t3 = `
-#if exists image
-`
-
 describe("Test tokenization of texts", () => {
 
     test("tokenize simple text", () => {

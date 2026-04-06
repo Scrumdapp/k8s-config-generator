@@ -33,6 +33,7 @@ export function preProcessLine(ctx: CommandContext, reader: TokenizedReader<Toke
 }
 
 export function processCondition(ctx: CommandContext, reader: TokenizedReader<TokenizedLine>, ignore: boolean): string {
+    const startLn = reader.index;
     const line = ignore ? "#if false" : processLine(ctx, reader.peekCurrent())
     const regex = line.match(/^\s*#if (\w+)/)
     if (!regex) {
@@ -50,13 +51,19 @@ export function processCondition(ctx: CommandContext, reader: TokenizedReader<To
     }
 
     const result = []
+    let ended = false;
 
     while (reader.hasNext()) {
         const curr = reader.consume()
         if (/^\s*#endif/.test(curr[0])) {
+            ended = true;
             break
         }
         result.push(preProcessLine(ctx, reader, !truthful || ignore))
+    }
+
+    if (!ended) {
+        throw new Error(`Line ${startLn}: If statement did not close`)
     }
 
     return ignore ? "" : result.join("\n")
