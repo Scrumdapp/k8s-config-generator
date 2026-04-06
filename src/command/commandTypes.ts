@@ -15,7 +15,7 @@ export function getCommandType(schema: any): CommandType {
         throw new Error("No command was defined")
     }
 
-    const cmd = commandTypes.get(keys[0])
+    const cmd = commandTypes.get(keys[0]!)
     if (!cmd) {
         throw new Error(`Command '${keys[0]}' does not exist`)
     }

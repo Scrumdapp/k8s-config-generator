@@ -4,7 +4,7 @@ import {copyCommand} from "../../src/command/commands/copyCommand";
 
 describe("Test template creation", () => {
 
-    test("create templates", () => {
+    test("template life cycle", () => {
         const template = createTemplate("test/data/templates/service")
         expect(template.schemaFile).toBeDefined()
         expect(template.getFiles().size).toBe(3)

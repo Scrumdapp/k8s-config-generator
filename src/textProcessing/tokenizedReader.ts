@@ -10,19 +10,19 @@ export class TokenizedReader<T> {
         return this.index + 1 < this.line.length
     }
 
-    public peekNext() {
+    public peekNext(): T {
         this.throwOutOfBounds(1)
-        return this.line[this.index+1]
+        return this.line[this.index+1]!
     }
 
-    public peekCurrent() {
+    public peekCurrent(): T {
         this.throwOutOfBounds()
-        return this.line[this.index]
+        return this.line[this.index]!
     }
 
-    public consume() {
+    public consume(): T {
         this.throwOutOfBounds(1)
-        return this.line[++this.index]
+        return this.line[++this.index]!
     }
 
     private throwOutOfBounds(offset = 0) {

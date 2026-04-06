@@ -22,11 +22,12 @@ export function getTextExpressionType(name: string) {
 }
 
 function addExpression(expression: TextExpression) {
-    if (expressions.get(expression.cmd[0].name)) {
-        throw new Error(`Schema type '${expression.cmd[0].name}' already exists`)
+    const name = expression.cmd[0]!.name
+    if (expressions.get(name)) {
+        throw new Error(`Schema type '${name}' already exists`)
     }
 
-    expressions.set(expression.cmd[0].name, expression)
+    expressions.set(name, expression)
 }
 
 function addExpressions() {

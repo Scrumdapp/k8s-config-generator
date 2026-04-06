@@ -22,6 +22,7 @@
     },
     "scripts": {
         "build": "tsc",
+        "buildw": "tsc --watch",
         "dev": "tsc --watch",
         "test": "jest",
         "testw": "jest --watch",

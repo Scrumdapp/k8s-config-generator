@@ -10,7 +10,7 @@ export function parseSchema(schema: any): SchemaNode {
         throw new Error("Schema cannot have a _type value")
     }
 
-    if (Object.keys(schema) == 0) {
+    if (Object.keys(schema).length == 0) {
         throw new Error("Schema node cannot be empty")
     }
 
@@ -35,7 +35,7 @@ export function readSchemaValues(values: any, schemaNode: SchemaNode): CommandCo
     return ctx;
 }
 
-export function convertObject(ctx: CommandContext, path: string, object: object) {
+export function convertObject(ctx: CommandContext, path: string, object: { [key: string]: any }) {
     for (let key in object) {
         const value = object[key]
         const p = path == "" ? key : `${path}.${key}`

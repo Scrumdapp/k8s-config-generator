@@ -8,7 +8,7 @@ export function parseExpression(expression: string) {
 }
 
 export function parseTokenizedExpression(tokenized: string[]): Expression {
-    const cmdName = tokenized[0].toLowerCase()
+    const cmdName = tokenized[0]!.toLowerCase()
     const expr = getTextExpressionType(cmdName)
     const values = new Map<string, ExpressionValue>()
 

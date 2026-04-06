@@ -1,6 +1,7 @@
 import {TokenizedText} from "@src/textProcessing/tokenizer";
 
 export class CommandContext {
+    // @ts-ignore
     workDir: string
 
     private data = new Map<string, any>()

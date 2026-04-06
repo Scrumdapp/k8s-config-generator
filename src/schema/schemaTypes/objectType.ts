@@ -43,7 +43,7 @@ export const objectType: SchemaType = {
 
         const children = node.data.children as SchemaNode[]
 
-        const v = {}
+        const v: { [key: string]: any } = {}
         for (let child of children) {
             const value = child.type.parseValue(obj[child.name], child)
             if (typeof value === "undefined") { continue }

@@ -22,7 +22,7 @@ export function processText(ctx: CommandContext, text: TokenizedText): string {
 }
 
 export function preProcessLine(ctx: CommandContext, reader: TokenizedReader<TokenizedLine>, ignore: boolean): string | null {
-    const regex = reader.peekCurrent()[0].match(/^\s*(#\w+)/)
+    const regex = reader.peekCurrent()[0]?.match(/^\s*(#\w+)/)
     if (!regex) {
         return ignore ? null : processLine(ctx, reader.peekCurrent())
     }
@@ -44,7 +44,7 @@ export function processCondition(ctx: CommandContext, reader: TokenizedReader<To
         throw new Error(`Line ${reader.index+1}: Could not resolve result of statement \n - Resolved: ${line}`)
     }
 
-    const operationResult = regex[1].trim()
+    const operationResult = regex[1]!.trim()
     let truthful = true;
     if (operationResult === "false" ||
         operationResult === "undefined" ||
@@ -59,7 +59,7 @@ export function processCondition(ctx: CommandContext, reader: TokenizedReader<To
 
     while (reader.hasNext()) {
         const curr = reader.consume()
-        if (/^\s*#endif/.test(curr[0])) {
+        if (/^\s*#endif/.test(curr[0]!)) {
             ended = true;
             break
         }

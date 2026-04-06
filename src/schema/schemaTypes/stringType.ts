@@ -22,7 +22,7 @@ export const stringType: SchemaType = {
                 v = obj.toString()
                 break
             case "string":
-                v = obj as String
+                v = obj as string
                 break
             default:
                 throw new Error(`Field '${node.path}' cannot be parsed as a number`)

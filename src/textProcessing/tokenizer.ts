@@ -72,7 +72,7 @@ export function tokenizeLine(text: string): TokenizedLine {
     newResult = []
     let next: string | null = null
     for (let i = result.length; i --> 0;) {
-        let t = result[i]
+        let t = result[i]!
         if (matchSpecial.test(t)) {
             if (next != null) {
                 newResult.push(next)

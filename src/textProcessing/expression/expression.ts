@@ -20,7 +20,7 @@ export class Expression {
             throw new Error(`Expression '${v.definition.name}' does not have type 'STR'`)
         }
 
-        return v.value as String
+        return v.value as string
     }
 
     getVariableName(name: string) {
@@ -33,7 +33,7 @@ export class Expression {
             throw new Error(`Expression '${v.definition.name}' does not have type 'VAR'`)
         }
 
-        return v.value as String
+        return v.value as string
     }
 }
 
