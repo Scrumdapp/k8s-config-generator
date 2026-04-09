@@ -26,4 +26,12 @@ export class CommandContext {
     setTemplates(templates: Map<string, TokenizedText>) {
         this.templates = new Map(templates)
     }
+
+    copy(): CommandContext {
+        const ctx = new CommandContext()
+        ctx.data = new Map<string, any>(this.data)
+        ctx.workDir = this.workDir
+        ctx.templates = this.templates
+        return ctx
+    }
 }

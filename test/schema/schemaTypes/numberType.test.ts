@@ -35,6 +35,15 @@ describe("Test the number type", () => {
             expect(node.data.required).toBe(false)
         })
 
+        test("default values", () => {
+            numberType.build({ _type: "number", default: 123 }, node)
+            expect(node.data.default).toBe(123)
+        })
+
+        test("invalid default value type", () => {
+            expect(() => numberType.build({ _type: "number", default: "wow" }, node)).toThrow()
+        })
+
         describe("min and max", () => {
             test("with min value", () => {
                 numberType.build({ _type: "number", min: 0 }, node)
@@ -86,6 +95,12 @@ describe("Test the number type", () => {
             test("null type", () => {
                 expect(() => numberType.parseValue(null, node)).toThrow()
             })
+        })
+
+        test("test default value", () => {
+            numberType.build({ _type: "number", default: 10 }, node)
+            const v = numberType.parseValue(undefined, node)
+            expect(v).toBe(10)
         })
 
         test("undefined without required", () => {

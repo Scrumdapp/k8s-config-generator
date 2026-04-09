@@ -10,6 +10,8 @@ export const numberType: SchemaType = {
         }
 
         setBooleanFlagIfExists(schema, "required", node)
+        setNumberFlagIfExists(schema, "default", node)
+
         const minExists = setNumberFlagIfExists(schema, "min", node)
         const maxExists = setNumberFlagIfExists(schema, "max", node)
 
@@ -20,7 +22,7 @@ export const numberType: SchemaType = {
         }
     },
     parseValue: (obj, node) => {
-        if (!assertPresentWithRequired(obj, node)) {
+        if (!assertPresentWithRequired(obj, node, it => obj = it)) {
             return undefined
         }
 

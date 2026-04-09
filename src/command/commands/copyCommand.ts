@@ -3,6 +3,7 @@ import * as PATH from "node:path";
 import {CommandType} from "../commandType";
 import {getSchemaValue, getStringValue} from "../commandUtils";
 import {processText} from "../../textProcessing/processText";
+import {createDirRecursive} from "../../utils/fsUtils";
 
 export const copyCommand: CommandType & { writeFile: (path: string, text: string) => void } = {
     cmd: "copy",
@@ -23,6 +24,7 @@ export const copyCommand: CommandType & { writeFile: (path: string, text: string
         copyCommand.writeFile(PATH.join(ctx.workDir, as), txt)
     },
     writeFile: (path: string, text: string) => {
+        createDirRecursive(PATH.dirname(path))
         FS.writeFileSync(path, text)
     }
 }

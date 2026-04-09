@@ -17,12 +17,21 @@ export function notPresent(value: any) {
     return value == null || typeof value === "undefined"
 }
 
-export function assertPresentWithRequired(value: any, node: SchemaNode) {
-    if (notPresent(value)) {
-        if (node.data.required === true) {
-            throw new Error(`field '${node.path}' is required but was not present`)
-        }
-        return false
+export function assertPresentWithRequired(value: any, node: SchemaNode, setDefault?: (v: any) => void) {
+    if (!notPresent(value)) {
+        return true
     }
-    return true
+
+    if (setDefault && node.data.hasOwnProperty("default")) {
+        value = node.data.default
+        if (!notPresent(value)) {
+            setDefault(value)
+            return true
+        }
+    }
+
+    if (node.data.required === true) {
+        throw new Error(`field '${node.path}' is required but was not present`)
+    }
+    return false
 }

@@ -10,24 +10,33 @@ describe("Test the string type", () => {
     })
 
     describe("Parsing schema data", () => {
-        test("Inline declaration", () => {
+        test("inline declaration", () => {
             stringType.build("string", node)
             expect(node.data.required).toBe(true)
         })
 
-        test("Separate declaration", () => {
+        test("separate declaration", () => {
             stringType.build({ _type: "string" }, node)
             expect(node.data.required).toBe(undefined)
         })
 
-        test("Inline declaration", () => {
+        test("inline declaration", () => {
             stringType.build({ _type: "string", required: true }, node)
             expect(node.data.required).toBe(true)
         })
 
-        test("Inline declaration with required set to false", () => {
+        test("inline declaration with required set to false", () => {
             stringType.build({ _type: "string", required: false }, node)
             expect(node.data.required).toBe(false)
+        })
+
+        test("default values", () => {
+            stringType.build({ _type: "string", default: "Wowies" }, node)
+            expect(node.data.default).toBe("Wowies")
+        })
+
+        test("invalid default value type", () => {
+            expect(() => stringType.build({ _type: "string", default: null }, node)).toThrow()
         })
     })
 
@@ -65,6 +74,12 @@ describe("Test the string type", () => {
             test("null throw", () => {
                 expect(() => stringType.parseValue(null, node)).toThrow()
             })
+        })
+
+        test("default values", () => {
+            stringType.build({ _type: "string", default: "hello" }, node)
+            const v = stringType.parseValue(undefined, node)
+            expect(v).toBe("hello")
         })
 
         test("undefined without required", () => {

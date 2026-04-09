@@ -36,6 +36,15 @@ describe("Test the docker_image type", () => {
             dockerImageType.build({ _type: "docker_image", required: false }, node)
             expect(node.data.required).toBe(false)
         })
+
+        test("default values", () => {
+            dockerImageType.build({ _type: "docker_image", default: "scrumdapp/web-client" }, node)
+            expect(node.data.default).toBe("scrumdapp/web-client")
+        })
+
+        test("invalid default value type", () => {
+            expect(() => dockerImageType.build({ _type: "docker_image", default: null }, node)).toThrow()
+        })
     })
 
     describe("Parsing values", () => {
@@ -85,6 +94,12 @@ describe("Test the docker_image type", () => {
             test("null type", () => {
                 expect(() => dockerImageType.parseValue(null, node)).toThrow()
             })
+        })
+
+        test("default values", () => {
+            dockerImageType.build({ _type: "docker_image", default: "scrumdapp/web-client" }, node)
+            const v = dockerImageType.parseValue(undefined, node)
+            expect(v).toBe("scrumdapp/web-client")
         })
 
         test("undefined without required", () => {

@@ -1,4 +1,4 @@
-import {SchemaType, setBooleanFlagIfExists} from "../schemaType";
+import {SchemaType, setBooleanFlagIfExists, setStringFlagIfExists} from "../schemaType";
 import {assertPresentWithRequired} from "../schemaUtils";
 
 export const nameType: SchemaType = {
@@ -10,9 +10,10 @@ export const nameType: SchemaType = {
         }
 
         setBooleanFlagIfExists(schema, "required", node)
+        setStringFlagIfExists(schema, "default", node)
     },
     parseValue: (obj, node) => {
-        if (!assertPresentWithRequired(obj, node)) {
+        if (!assertPresentWithRequired(obj, node, it => obj = it)) {
             return undefined
         }
 

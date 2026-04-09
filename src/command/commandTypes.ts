@@ -2,6 +2,7 @@ import {CommandType} from "./commandType";
 import {setCommand} from "./commands/setCommand";
 import {echoCommand} from "./commands/echoCommand";
 import {copyCommand} from "./commands/copyCommand";
+import {ifCommand} from "./commands/ifCommand";
 
 export const commandTypes = new Map<string, CommandType>()
 
@@ -28,6 +29,7 @@ function addTypes() {
     addCommandType(setCommand)
     addCommandType(echoCommand)
     addCommandType(copyCommand)
+    addCommandType(ifCommand)
 }
 
 function addCommandType(type: CommandType) {

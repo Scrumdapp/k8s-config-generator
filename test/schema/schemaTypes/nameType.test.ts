@@ -35,6 +35,15 @@ describe("Test the name type", () => {
             nameType.build({ _type: "name_string", required: false }, node)
             expect(node.data.required).toBe(false)
         })
+
+        test("default values", () => {
+            nameType.build({ _type: "name_string", default: "cringe-name" }, node)
+            expect(node.data.default).toBe("cringe-name")
+        })
+
+        test("invalid default value type", () => {
+            expect(() => nameType.build({ _type: "name_string", default: null }, node)).toThrow()
+        })
     })
 
     describe("Parsing values", () => {
@@ -80,6 +89,12 @@ describe("Test the name type", () => {
             test("null type", () => {
                 expect(() => nameType.parseValue(null, node)).toThrow()
             })
+        })
+
+        test("default values", () => {
+            nameType.build({ _type: "name_string", default: "hello" }, node)
+            const v = nameType.parseValue(undefined, node)
+            expect(v).toBe("hello")
         })
 
         test("undefined without required", () => {
