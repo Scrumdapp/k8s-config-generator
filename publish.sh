@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 
 npm i
+npm run test
 
 mkdir pub
 cd pub || exit
@@ -14,3 +15,8 @@ cp -r ../node_modules .
 npm run build
 rm -r src
 rm -r node_modules
+
+npm publish --access public
+
+cd ..
+rm -r pub

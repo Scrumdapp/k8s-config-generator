@@ -1,5 +1,6 @@
 {
     "name": "@scrumdapp/k8s-config-generator",
+    "private": false,
     "version": "0.0.1",
     "description": "Generate k8s configs from easier to use files",
     "homepage": "https://github.com/Scrumdapp/k8s-config-generator#readme",
@@ -28,8 +29,7 @@
         "test": "jest",
         "testw": "jest --watch",
         "testc": "jest --coverage",
-        "prepublish": "sh ./publish.sh",
-        "postpublish": "sh ./postPublish.sh"
+        "publish": "sh ./publish.sh"
     },
     "dependencies": {
         "chalk": "^5.6.2",
