@@ -1,5 +1,5 @@
 {
-    "name": "k8s-config-generator",
+    "name": "@scrumdapp/k8s-config-generator",
     "version": "0.0.1",
     "description": "Generate k8s configs from easier to use files",
     "homepage": "https://github.com/Scrumdapp/k8s-config-generator#readme",
@@ -11,7 +11,7 @@
         "url": "git+https://github.com/Scrumdapp/k8s-config-generator.git"
     },
     "license": "GPL-3.0",
-    "author": "",
+    "author": "Jeroeno",
     "type": "ccommonjs",
     "main": "dist/index.js",
     "directories": {
@@ -21,12 +21,15 @@
         "k8s-generator": "dist/bin/k8s-generator.js"
     },
     "scripts": {
+        "prebuild": "rm -rf ./dist",
         "build": "tsc",
         "buildw": "tsc --watch",
         "dev": "tsc --watch",
         "test": "jest",
         "testw": "jest --watch",
-        "testc": "jest --coverage"
+        "testc": "jest --coverage",
+        "prepublish": "sh ./publish.sh",
+        "postpublish": "sh ./postPublish.sh"
     },
     "dependencies": {
         "chalk": "^5.6.2",
