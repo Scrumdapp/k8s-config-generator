@@ -36,6 +36,9 @@
         "moduleDetection": "force",
         "skipLibCheck": true,
     },
+    "files": [
+        "src/bin/k8s-generator.ts"
+    ],
     "include": [
         "src"
     ]

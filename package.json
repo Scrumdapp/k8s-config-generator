@@ -13,7 +13,7 @@
     },
     "license": "GPL-3.0",
     "author": "Jeroeno",
-    "type": "ccommonjs",
+    "type": "commonjs",
     "main": "dist/index.js",
     "directories": {
         "test": "test"
@@ -23,6 +23,7 @@
     },
     "scripts": {
         "prebuild": "rm -rf ./dist",
+        "bundle": "esbuild src/bin/k8s-generator.ts --bundle --platform=node --outfile=dist/k8s-config-generator.js",
         "build": "tsc",
         "buildw": "tsc --watch",
         "dev": "tsc --watch",
@@ -39,6 +40,7 @@
     "devDependencies": {
         "@types/jest": "^30.0.0",
         "@types/node": "^25.5.2",
+        "esbuild": "^0.28.0",
         "jest": "^30.3.0",
         "ts-jest": "^29.4.9",
         "typescript": "^6.0.2"

@@ -12,12 +12,40 @@
       nixpkgs,
       utils,
     }:
-    utils.lib.eachDefaultSystem (
+    {
+      overlays.default = final: prev: {
+        k8s-config-generator = final.callPackage (
+          { stdenv, pkgs, ... }:
+          pkgs.buildNpmPackage {
+            pname = "k8s-config-generator";
+            version = "0.0.1";
+            src = ./.;
+            npmBuildScript = "bundle";
+            npmDepsHash = "sha256-VNs2JlMMEq1wuNFhwgZb8bAyGCf4Gae9IB6PBTY7rBQ=";
+            installPhase = ''
+              mkdir -p $out/bin
+              echo "#!/usr/bin/env node
+              $(cat dist/k8s-config-generator.js)
+              " > $out/bin/k8s-config-generator
+              chmod +x $out/bin/k8s-config-generator
+            '';
+          }
+        ) { };
+      };
+    }
+    // (utils.lib.eachDefaultSystem (
       system:
       let
-        pkgs = (import nixpkgs) { inherit system; };
+        pkgs = (import nixpkgs) {
+          inherit system;
+          overlays = [ self.overlays.default ];
+        };
       in
       {
+        packages = {
+          default = pkgs.k8s-config-generator;
+          k8s-config-generator = pkgs.k8s-config-generator;
+        };
         devShell = pkgs.mkShell {
           name = "Scrumdapp k8s generator";
           buildInputs = with pkgs; [
@@ -36,5 +64,5 @@
           '';
         };
       }
-    );
+    ));
 }
