@@ -32,9 +32,9 @@ const t5 = `
 _template: service
 #if exists name
 name: {{name}}
-#if exists image
+  #if exists image
 image: {{image}}
-#endif
+  #endif
 port: 3000
 #endif
 `

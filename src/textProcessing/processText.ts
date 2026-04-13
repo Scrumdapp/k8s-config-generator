@@ -26,7 +26,7 @@ export function preProcessLine(ctx: CommandContext, reader: TokenizedReader<Toke
         return ignore ? null : processLine(ctx, reader.peekCurrent())
     }
 
-    const operation = regex[0].toLowerCase()
+    const operation = regex[1]!.toLowerCase()
     switch (operation) {
         case "#if":
             return processCondition(ctx, reader, ignore)

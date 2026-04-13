@@ -18,7 +18,7 @@
           { stdenv, pkgs, ... }:
           pkgs.buildNpmPackage {
             pname = "k8s-config-generator";
-            version = "0.0.1";
+            version = "0.0.2";
             src = ./.;
             npmBuildScript = "bundle";
             npmDepsHash = "sha256-VNs2JlMMEq1wuNFhwgZb8bAyGCf4Gae9IB6PBTY7rBQ=";
