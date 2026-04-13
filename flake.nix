@@ -21,7 +21,7 @@
             version = "0.0.2";
             src = ./.;
             npmBuildScript = "bundle";
-            npmDepsHash = "sha256-VNs2JlMMEq1wuNFhwgZb8bAyGCf4Gae9IB6PBTY7rBQ=";
+            npmDepsHash = "sha256-6YG486TCIdjrm0ikxApvzzCICL9E7Dcd9FRN0yyjFD4=";
             installPhase = ''
               mkdir -p $out/bin
               echo "#!/usr/bin/env node
