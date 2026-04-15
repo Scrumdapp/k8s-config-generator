@@ -1,7 +1,7 @@
 {
     "name": "@scrumdapp/k8s-config-generator",
     "private": false,
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Generate k8s configs from easier to use files",
     "homepage": "https://github.com/Scrumdapp/k8s-config-generator#readme",
     "bugs": {
@@ -18,11 +18,11 @@
         "test": "test"
     },
     "bin": {
-        "k8s-generator": "dist/bin/k8s-generator.js"
+        "k8s-config-generator": "dist/k8s-config-generator.js"
     },
     "scripts": {
         "prebuild": "rm -rf ./dist",
-        "bundle": "esbuild src/bin/k8s-generator.ts --bundle --platform=node --outfile=dist/k8s-config-generator.js",
+        "bundle": "esbuild src/bin/k8s-config-generator.ts --bundle --platform=node --outfile=dist/k8s-config-generator.js",
         "build": "tsc",
         "buildw": "tsc --watch",
         "dev": "tsc --watch",

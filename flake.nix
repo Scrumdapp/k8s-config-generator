@@ -18,10 +18,10 @@
           { stdenv, pkgs, ... }:
           pkgs.buildNpmPackage {
             pname = "k8s-config-generator";
-            version = "0.0.2";
+            version = "0.0.3";
             src = ./.;
             npmBuildScript = "bundle";
-            npmDepsHash = "sha256-6YG486TCIdjrm0ikxApvzzCICL9E7Dcd9FRN0yyjFD4=";
+            npmDepsHash = "sha256-SRo1mcddfHDtETNconAf4ag5kED1UTUXipuvwUfjARY=";
             installPhase = ''
               mkdir -p $out/bin
               echo "#!/usr/bin/env node

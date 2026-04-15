@@ -37,7 +37,7 @@
         "skipLibCheck": true,
     },
     "files": [
-        "src/bin/k8s-generator.ts"
+      "src/bin/k8s-config-generator.ts"
     ],
     "include": [
         "src"

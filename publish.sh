@@ -12,7 +12,7 @@ cp ../LICENSE .
 cp -r ../src .
 cp -r ../node_modules .
 
-npm run build
+npm run bundle
 rm -r src
 rm -r node_modules
 
