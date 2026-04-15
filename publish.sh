@@ -16,6 +16,10 @@ npm run bundle
 rm -r src
 rm -r node_modules
 
+echo "#!/usr/bin/env node
+$(cat dist/k8s-config-generator.js)
+" > dist/k8s-config-generator.js
+
 npm publish --access public
 
 cd ..

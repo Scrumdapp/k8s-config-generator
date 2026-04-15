@@ -1,7 +1,7 @@
 {
     "name": "@scrumdapp/k8s-config-generator",
     "private": false,
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "Generate k8s configs from easier to use files",
     "homepage": "https://github.com/Scrumdapp/k8s-config-generator#readme",
     "bugs": {
