@@ -89,7 +89,7 @@ export function processLoop(ctx: CommandContext, reader: TokenizedReader<Tokeniz
     const valueName = regex[2]!.trim()
     const array = ctx.getValue(valueName)
 
-    if (array.length == 0 || valueName == "empty" || valueName == "undefined" || valueName == "null") {
+    if (array == null || array.length == 0 || valueName == "empty" || valueName == "undefined" || valueName == "null") {
         ignore = true
     }
 
