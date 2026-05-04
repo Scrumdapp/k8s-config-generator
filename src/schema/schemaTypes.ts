@@ -1,9 +1,10 @@
-import {SchemaType} from "./schemaType";
-import {objectType} from "./schemaTypes/objectType";
-import {numberType} from "./schemaTypes/numberType";
-import {stringType} from "./schemaTypes/stringType";
-import {nameType} from "./schemaTypes/nameType";
-import {dockerImageType} from "./schemaTypes/dockerImageType";
+import { SchemaType } from "./schemaType";
+import { objectType } from "./schemaTypes/objectType";
+import { numberType } from "./schemaTypes/numberType";
+import { stringType } from "./schemaTypes/stringType";
+import { nameType } from "./schemaTypes/nameType";
+import { dockerImageType } from "./schemaTypes/dockerImageType";
+import { arrayType } from "./schemaTypes/arrayType";
 
 export const schemaTypes = new Map<string, SchemaType>()
 
@@ -43,6 +44,7 @@ function addTypes() {
     addSchemaType(stringType)
     addSchemaType(nameType)
     addSchemaType(dockerImageType)
+    addSchemaType(arrayType)
 }
 
 function addSchemaType(type: SchemaType) {
