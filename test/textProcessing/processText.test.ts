@@ -1,6 +1,6 @@
-import {CommandContext} from "../../src/command/commandContext";
-import {tokenizeFile} from "../../src/textProcessing/tokenizer";
-import {processText} from "../../src/textProcessing/processText";
+import { CommandContext } from "../../src/command/commandContext";
+import { tokenizeFile } from "../../src/textProcessing/tokenizer";
+import { processText } from "../../src/textProcessing/processText";
 
 const t0 = `
 name: checkin-service
@@ -54,6 +54,22 @@ port: 3000
 
 const t5r3 = `
 _template: service
+`
+
+const t6 = `
+env:
+#for env in environment
+- name: {{env.name}}
+  value: {{env.value}}
+#endfor
+`
+
+const t6r1 = `
+env:
+- name: SOME_ENV
+  value: 123
+- name: OTHER_ENV
+  value: wowies
 `
 
 describe("Processing of text", () => {
@@ -116,6 +132,18 @@ describe("Processing of text", () => {
             const ctx = new CommandContext()
             expect(() => processText(ctx, tokenizeFile(t4))).toThrow()
         })
+
+    })
+
+    test("for loops", () => {
+        const ctx = new CommandContext()
+        ctx.setValue("environment", [
+            { name: "SOME_ENV", value: "123" },
+            { name: "OTHER_ENV", value: "wowies" }
+        ])
+
+        const v = processText(ctx, tokenizeFile(t6))
+        expect(v).toBe(t6r1)
 
     })
 

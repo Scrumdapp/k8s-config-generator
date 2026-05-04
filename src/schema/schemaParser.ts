@@ -1,5 +1,5 @@
-import {createRootNode, SchemaNode} from "./schemaNode";
-import {CommandContext} from "../command/commandContext";
+import { createRootNode, SchemaNode } from "./schemaNode";
+import { CommandContext } from "../command/commandContext";
 
 export function parseSchema(schema: any): SchemaNode {
     if (typeof schema !== "object") {
@@ -39,9 +39,26 @@ export function convertObject(ctx: CommandContext, path: string, object: { [key:
     for (let key in object) {
         const value = object[key]
         const p = path == "" ? key : `${path}.${key}`
-        ctx.setValue(p, value)
-        if (typeof value === "object" && !(value instanceof Array)) {
-            convertObject(ctx, p, value)
-        }
+        convertValue(ctx, p, value)
+    }
+}
+
+export function convertArray(ctx: CommandContext, path: string, object: any[]) {
+    ctx.setValue(path == "" ? "length" : `${path}.length`, object.length)
+
+    for (let i = 0; i < object.length; i++) {
+        const value = object[i]
+        const p = `${path}[${i}]`
+        convertValue(ctx, p, value)
+    }
+}
+
+export function convertValue(ctx: CommandContext, path: string, value: any) {
+    ctx.setValue(path, value)
+
+    if (typeof value === "object" && !(value instanceof Array)) {
+        convertObject(ctx, path, value)
+    } else if (typeof value === "object" && value instanceof Array) {
+        convertArray(ctx, path, value)
     }
 }
