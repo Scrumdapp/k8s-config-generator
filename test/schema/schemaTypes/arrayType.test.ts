@@ -1,8 +1,9 @@
 import { createRootNode, createSchemaNode, SchemaNode } from "../../../src/schema/schemaNode";
 import { arrayType } from "../../../src/schema/schemaTypes/arrayType";
-import { schemaTypes } from "../../../src/schema/schemaTypes";
+import { getSchemaType, schemaTypes } from "../../../src/schema/schemaTypes";
 import { nameType } from "../../../src/schema/schemaTypes/nameType";
 import { objectType } from "../../../src/schema/schemaTypes/objectType";
+import { stringType } from "../../../src/schema/schemaTypes/stringType";
 
 describe("Test the array type", () => {
     const root = createRootNode()
@@ -22,8 +23,34 @@ describe("Test the array type", () => {
             expect(() => arrayType.build("array", node)).toThrow()
         })
 
+        test("implicit declaration of array", () => {
+            const schema = {
+                items: ["string"]
+            }
+
+            expect(getSchemaType(schema.items)).toBe(arrayType)
+        })
+
         test("separate declaration without item throw", () => {
             expect(() => arrayType.build({ _type: "array" }, node)).toThrow()
+        })
+
+        test("implicit declaration resolves", () => {
+            arrayType.build(["string"], node)
+            expect(node.data.itemNode.type).toBe(stringType)
+        })
+
+        test("implicit declaration isn't required", () => {
+            arrayType.build([{ item: "string" }], node)
+            expect(node.data.required).toBe(undefined)
+        })
+
+        test("implicit with no declerations to fail", () => {
+            expect(() => arrayType.build([], node)).toThrow()
+        })
+
+        test("implicit with multiple declerations to fail", () => {
+            expect(() => arrayType.build(["string", "name_string"], node)).toThrow()
         })
 
         test("separate declaration with item is fine", () => {

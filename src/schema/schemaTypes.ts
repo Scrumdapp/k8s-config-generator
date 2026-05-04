@@ -14,6 +14,9 @@ export function getSchemaType(schema: any): SchemaType {
         type = schema
     } else if (typeof schema === "object") {
         type = schema.hasOwnProperty("_type") ? schema._type : "object"
+        if (schema instanceof Array) {
+            type = "array"
+        }
     } else {
         throw new Error("Schema node must be an string or object")
     }

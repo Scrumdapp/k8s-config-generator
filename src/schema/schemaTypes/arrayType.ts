@@ -10,15 +10,24 @@ export const arrayType: SchemaType = {
             throw new Error(`${node.path}: Array cannot be declared inline`)
         }
 
-        if (!schema.hasOwnProperty("item")) {
-            throw new Error(`${node.path}: Items field must be declared`)
+        let items: any = null
+
+        if (schema instanceof Array) {
+            if (schema.length !== 1) {
+                throw new Error(`${node.path}: Implicit array declaration only allows 1 item`)
+            }
+            items = schema[0]
+        } else {
+            setBooleanFlagIfExists(schema, "required", node)
+            if (!schema.hasOwnProperty("item")) {
+                throw new Error(`${node.path}: Items field must be declared`)
+            }
+            items = schema.item
         }
 
-        setBooleanFlagIfExists(schema, "required", node)
-
-        const itemType = getSchemaType(schema.item)
-        const schemaNode = createSchemaNode(node, itemType, schema.item)
-        itemType.build(schema.item, schemaNode)
+        const itemType = getSchemaType(items)
+        const schemaNode = createSchemaNode(node, itemType, items)
+        itemType.build(items, schemaNode)
 
         node.data.itemNode = schemaNode
 
